@@ -10,6 +10,12 @@ import db from "../models/index";
 
 const salt = bcrypt.genSaltSync(10);
 
+const getUserList = async () => {
+  let user = [];
+  user = await db.User.findAll();
+  return user;
+};
+
 const hashUserPassword = (userPassword) => {
   let hashPassword = bcrypt.hashSync(userPassword, salt);
   return hashPassword;
@@ -29,22 +35,34 @@ const createNewUser = async (email, password, username) => {
   }
 };
 
-const getUserList = async () => {
-  const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    database: "learn-nodejs",
-    Promise: bluebird,
+const deleteUser = async (userId) => {
+  await db.User.destroy({
+    where: { id: userId },
   });
-  try {
-    const [rows, fields] = await connection.execute("SELECT * FROM user");
-    return rows;
-  } catch (error) {
-    console.log(error);
-  }
 };
 
+const getUserById = async (id) => {
+  let user = {};
+  user = await db.User.findOne({
+    where: { id: id },
+  });
+  return user.get({ plain: true });
+};
+
+const updateUserInfo = async (email, username, id) => {
+  await db.User.update(
+    { email: email, username: username },
+    {
+      where: {
+        id: id,
+      },
+    }
+  );
+};
 module.exports = {
   createNewUser,
   getUserList,
+  deleteUser,
+  getUserById,
+  updateUserInfo,
 };

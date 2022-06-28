@@ -17,7 +17,7 @@
     <div class="container">
       <div class="row">
         <div class="user-info-container">
-          <h2>Created User</h2>
+          <h2>List User</h2>
           <form method="POST" action="/user/create-user">
             <div class="mb-3 mt-3 col-6">
               <label for="email" class="form-label">Email address</label>
@@ -76,8 +76,14 @@
                 <td><%= item.email %></td>
                 <td><%= item.username %></td>
                 <td>
-                  <button type="button" class="btn btn-warning">Edit</button>
-                  <button type="button" class="btn btn-danger">Delete</button>
+                  
+                  <a class="btn btn-warning" href="/update-user/<%= item.id %>" >
+                   Edit
+                  </a>
+                  
+                  <form style="display: inline" action="/delete-user/<%= item.id %>" method="POST">
+                    <button type="submit" class="btn btn-danger" >Delete</button>
+                  </form>
                 </td>
               </tr>
               <% }); %>

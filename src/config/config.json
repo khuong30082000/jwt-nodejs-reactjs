@@ -5,10 +5,9 @@
     "database": "learn-nodejs",
     "host": "127.0.0.1",
     "dialect": "mysql",
-     "define": {
+    "define": {
       "freezeTableName":true
-     },
-     "loggin" :false
+     }
   },
   "test": {
     "username": "root",
