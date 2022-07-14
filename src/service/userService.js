@@ -11,6 +11,8 @@ import db from "../models/index";
 const salt = bcrypt.genSaltSync(10);
 
 const getUserList = async () => {
+  //test realationships
+
   let user = [];
   user = await db.User.findAll();
   return user;
