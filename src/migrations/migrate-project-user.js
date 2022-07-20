@@ -6,13 +6,13 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTERGER,
+        type: Sequelize.INTEGER,
       },
       projectId: {
-        type: Sequelize.INTERGER,
+        type: Sequelize.INTEGER,
       },
       userId: {
-        type: Sequelize.INTERGER,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
